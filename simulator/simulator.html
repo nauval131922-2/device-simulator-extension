@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Device Simulator - Responsive Testing Tool</title>
+  <link rel="stylesheet" href="simulator.css">
+</head>
+<body>
+  <!-- Header Toolbar -->
+  <header class="toolbar">
+    <div class="toolbar-brand">
+      <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+        <line x1="12" y1="18" x2="12.01" y2="18"></line>
+      </svg>
+      <span>Device Simulator</span>
+    </div>
+
+    <div class="toolbar-controls">
+      <!-- Custom Resolution Inputs -->
+      <div class="control-group custom-res-group hidden" id="customResGroup">
+        <input type="number" id="customWidth" value="375" min="200" max="3840" placeholder="Width">
+        <span>×</span>
+        <input type="number" id="customHeight" value="812" min="200" max="3840" placeholder="Height">
+      </div>
+
+      <!-- Orientation Toggle -->
+      <button class="btn btn-icon" id="orientationBtn" title="Rotate Orientation">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 9l-4-4-4 4"></path>
+          <path d="M4 15l4 4 4-4"></path>
+          <path d="M16 5h2a2 2 0 0 1 2 2v6"></path>
+          <path d="M8 19H6a2 2 0 0 1-2-2v-6"></path>
+        </svg>
+      </button>
+
+      <!-- Zoom / Scale Selector -->
+      <div class="control-group">
+        <label for="scaleSelect">Zoom:</label>
+        <select id="scaleSelect">
+          <option value="fit" selected>Fit Window</option>
+          <option value="0.5">50%</option>
+          <option value="0.67">67%</option>
+          <option value="0.75">75%</option>
+          <option value="1">100%</option>
+          <option value="1.25">125%</option>
+        </select>
+      </div>
+
+      <!-- Frame Toggle -->
+      <button class="btn btn-toggle active" id="frameToggleBtn" title="Toggle Device Mockup Frame">
+        Frame: ON
+      </button>
+
+      <!-- Sync Scroll Toggle -->
+      <button class="btn btn-toggle" id="syncScrollBtn" title="Synchronize scrolling & clicks across visible devices">
+        Sync: OFF
+      </button>
+
+      <!-- URL Input Bar -->
+      <div class="url-input-container">
+        <input type="url" id="urlInput" placeholder="https://example.com" />
+        <button class="btn btn-primary" id="goBtn">Go</button>
+      </div>
+
+      <!-- Actions -->
+      <button class="btn btn-icon" id="reloadBtn" title="Reload Page">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M23 4v6h-6"></path>
+          <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+        </svg>
+      </button>
+
+      <button class="btn btn-icon" id="screenshotBtn" title="Take Screenshot">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+          <circle cx="12" cy="13" r="4"></circle>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Simulator Main Container -->
+  <main class="simulator-viewport" id="viewport">
+    <div class="devices-grid" id="devicesGrid">
+      <!-- Device Wrappers + Add (+) Card will be generated dynamically -->
+    </div>
+  </main>
+
+  <!-- Add Device Modal -->
+  <div class="modal hidden" id="addDeviceModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Add Device Simulator</h3>
+        <button class="btn-close" id="closeModalBtn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <label>Select Device Preset:</label>
+        <select id="modalDeviceSelect">
+          <optgroup label="📱 Smartphones">
+            <option value="iphone15pro" data-name="iPhone 15 Pro" data-width="393" data-height="852">iPhone 15 Pro (393 × 852)</option>
+            <option value="iphone14" data-name="iPhone 14" data-width="390" data-height="844">iPhone 14 / 13 (390 × 844)</option>
+            <option value="iphonese" data-name="iPhone SE" data-width="375" data-height="667">iPhone SE (375 × 667)</option>
+            <option value="pocox7pro" data-name="POCO X7 Pro" data-width="393" data-height="873">POCO X7 Pro (393 × 873 | 1.5K 6.67")</option>
+            <option value="galaxys24" data-name="Samsung Galaxy S24" data-width="412" data-height="915">Samsung Galaxy S24 (412 × 915)</option>
+            <option value="pixel8" data-name="Google Pixel 8" data-width="412" data-height="915">Google Pixel 8 (412 × 915)</option>
+            <option value="xiaomi14" data-name="Xiaomi 14" data-width="393" data-height="873">Xiaomi 14 (393 × 873)</option>
+          </optgroup>
+          <optgroup label="📱 Tablets">
+            <option value="advansketsa5" data-name="Advan Sketsa 5" data-width="800" data-height="1280">Advan Sketsa 5 (800 × 1280 | 2K 11.97")</option>
+            <option value="advansketsa3" data-name="Advan Sketsa 3" data-width="800" data-height="1280">Advan Sketsa 3 (800 × 1280)</option>
+            <option value="ipadpro129" data-name="iPad Pro 12.9" data-width="1024" data-height="1366">Apple iPad Pro 12.9" (1024 × 1366)</option>
+            <option value="ipadair" data-name="iPad Air 11" data-width="820" data-height="1180">Apple iPad Air 11" (820 × 1180)</option>
+            <option value="ipadmini" data-name="iPad Mini" data-width="744" data-height="1133">Apple iPad Mini (744 × 1133)</option>
+            <option value="galaxytabs9" data-name="Galaxy Tab S9" data-width="800" data-height="1280">Samsung Galaxy Tab S9 (800 × 1280)</option>
+            <option value="xiaomipad6" data-name="Xiaomi Pad 6" data-width="800" data-height="1280">Xiaomi Pad 6 (800 × 1280)</option>
+            <option value="surfacepro9" data-name="Surface Pro 9" data-width="912" data-height="1368">Microsoft Surface Pro 9 (912 × 1368)</option>
+          </optgroup>
+          <optgroup label="💻 Laptops">
+            <option value="thinkpadt470" data-name="ThinkPad T470" data-width="1366" data-height="768">Lenovo ThinkPad T470 (1366 × 768 | 14")</option>
+            <option value="macbookpro16" data-name="MacBook Pro 16" data-width="1728" data-height="1117">Apple MacBook Pro 16" (1728 × 1117)</option>
+            <option value="macbookair13" data-name="MacBook Air 13" data-width="1470" data-height="956">Apple MacBook Air 13" (1470 × 956)</option>
+            <option value="dellxps15" data-name="Dell XPS 15" data-width="1536" data-height="960">Dell XPS 15 (1536 × 960)</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" id="confirmAddDeviceBtn">Add Device</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="simulator.js"></script>
+</body>
+</html>

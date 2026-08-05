@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Background Gradient: Deep Cyber Purple -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0c0728"/>
+      <stop offset="50%" stop-color="#150d3a"/>
+      <stop offset="100%" stop-color="#221354"/>
+    </linearGradient>
+
+    <!-- Neon Screen Gradient (Phone) -->
+    <linearGradient id="phoneScreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff007f"/>
+      <stop offset="50%" stop-color="#7928ca"/>
+      <stop offset="100%" stop-color="#4200ff"/>
+    </linearGradient>
+
+    <!-- Neon Screen Gradient (Tablet) -->
+    <linearGradient id="tabletScreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f2fe"/>
+      <stop offset="100%" stop-color="#4facfe"/>
+    </linearGradient>
+
+    <!-- Metallic Frame Gradient -->
+    <linearGradient id="metalFrame" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="50%" stop-color="#a1a1aa" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#3f3f46" stop-opacity="0.9"/>
+    </linearGradient>
+
+    <!-- Glowing Aura Filters -->
+    <filter id="glowMagenta" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="24" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <filter id="glowCyan" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="20" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <filter id="dropShadow3D" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000" flood-opacity="0.75"/>
+    </filter>
+  </defs>
+
+  <!-- Base Icon Shape (iOS App Style Squircle) -->
+  <rect x="16" y="16" width="480" height="480" rx="112" fill="url(#bgGrad)"/>
+  <rect x="16" y="16" width="480" height="480" rx="112" fill="none" stroke="url(#metalFrame)" stroke-width="4" opacity="0.4"/>
+
+  <!-- Background Ambient Glow Effects -->
+  <circle cx="360" cy="180" r="140" fill="#00f2fe" opacity="0.3" filter="url(#glowCyan)"/>
+  <circle cx="160" cy="320" r="150" fill="#ff007f" opacity="0.35" filter="url(#glowMagenta)"/>
+
+  <!-- BACK DEVICE: Tablet / Desktop Viewport -->
+  <g filter="url(#dropShadow3D)">
+    <!-- Tablet Outer Frame -->
+    <rect x="64" y="100" width="280" height="340" rx="28" fill="#18181b" stroke="#3f3f46" stroke-width="4"/>
+    <rect x="76" y="114" width="256" height="312" rx="18" fill="#09090b"/>
+    
+    <!-- Tablet Screen Content -->
+    <rect x="76" y="114" width="256" height="312" rx="18" fill="url(#tabletScreen)" opacity="0.95"/>
+    <!-- Tablet UI Overlay -->
+    <!-- Navbar -->
+    <rect x="92" y="132" width="224" height="20" rx="6" fill="#ffffff" opacity="0.3"/>
+    <circle cx="106" cy="142" r="4" fill="#ff5f56"/>
+    <circle cx="118" cy="142" r="4" fill="#ffbd2e"/>
+    <circle cx="130" cy="142" r="4" fill="#27c93f"/>
+    <!-- Hero Banner Card -->
+    <rect x="92" y="164" width="224" height="84" rx="12" fill="#ffffff" opacity="0.25"/>
+    <!-- Grid Content -->
+    <rect x="92" y="260" width="104" height="70" rx="10" fill="#ffffff" opacity="0.2"/>
+    <rect x="212" y="260" width="104" height="70" rx="10" fill="#ffffff" opacity="0.2"/>
+    <rect x="92" y="342" width="224" height="40" rx="10" fill="#ffffff" opacity="0.15"/>
+  </g>
+
+  <!-- FRONT DEVICE: Smartphone (Overlapping with 3D Pop) -->
+  <g filter="url(#dropShadow3D)">
+    <!-- Metallic Edge Highlight -->
+    <rect x="216" y="70" width="232" height="392" rx="46" fill="url(#metalFrame)"/>
+    <!-- Outer Bezel -->
+    <rect x="220" y="74" width="224" height="384" rx="42" fill="#09090b"/>
+    
+    <!-- Phone Screen -->
+    <rect x="228" y="84" width="208" height="364" rx="34" fill="url(#phoneScreen)"/>
+
+    <!-- Dynamic Island Notch -->
+    <rect x="290" y="96" width="84" height="20" rx="10" fill="#000000"/>
+    <circle cx="356" cy="106" r="4" fill="#18181b"/>
+    <circle cx="356" cy="106" r="2" fill="#0d9488"/>
+
+    <!-- Phone Screen UI Components -->
+    <!-- App Header Bar -->
+    <rect x="246" y="132" width="172" height="16" rx="8" fill="#ffffff" opacity="0.35"/>
+    <circle cx="260" cy="140" r="4" fill="#ffffff" opacity="0.8"/>
+
+    <!-- Big Feature Widget Card -->
+    <rect x="246" y="160" width="172" height="110" rx="16" fill="#ffffff" opacity="0.25"/>
+    <!-- Simulated Chart / Icon in Widget -->
+    <circle cx="332" cy="205" r="28" fill="none" stroke="#ffffff" stroke-width="6" opacity="0.6"/>
+    <path d="M 332 185 L 332 205 L 348 205" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" opacity="0.9"/>
+
+    <!-- Responsive Breakpoint Arrows Badge -->
+    <rect x="246" y="282" width="172" height="44" rx="12" fill="#000000" opacity="0.4"/>
+    <path d="M 268 304 L 284 294 L 284 314 Z" fill="#00f2fe"/>
+    <line x1="282" y1="304" x2="382" y2="304" stroke="#00f2fe" stroke-width="4" stroke-dasharray="6,4"/>
+    <path d="M 396 304 L 380 294 L 380 314 Z" fill="#00f2fe"/>
+
+    <!-- List Item Mockups -->
+    <rect x="246" y="338" width="172" height="14" rx="7" fill="#ffffff" opacity="0.4"/>
+    <rect x="246" y="360" width="130" height="12" rx="6" fill="#ffffff" opacity="0.25"/>
+
+    <!-- Bottom Navigation Bar -->
+    <rect x="246" y="386" width="172" height="40" rx="14" fill="#000000" opacity="0.5"/>
+    <circle cx="274" cy="406" r="8" fill="#00f2fe"/>
+    <circle cx="332" cy="406" r="8" fill="#ffffff" opacity="0.4"/>
+    <circle cx="390" cy="406" r="8" fill="#ffffff" opacity="0.4"/>
+
+    <!-- Home Bar Indicator -->
+    <rect x="300" y="438" width="64" height="4" rx="2" fill="#ffffff" opacity="0.9"/>
+  </g>
+</svg>
